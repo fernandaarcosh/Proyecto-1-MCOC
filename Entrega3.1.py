@@ -34,7 +34,7 @@ dt=1.      #s
 #Materiales a utilizar y sus respectivos valores
 Materiales=["Hierro", "Madera", "Hormigon", "Acero dulce", "Poliestireno Expandido", "Pastico (Polipropile)", "Marmol", "Vidrio", "Aluminio", "Arena"]
 K=[79.5, 0.13, 1.4, 49., 0.0373, 0.157, 2.09, 0.81, 209., 0.33] # W/(m*K)
-c=[450., 1700., 670., 460., 1674.72, 1800., 879., 837., 900., 795.] #J/Kg*C
+c=[450., 1381., 837., 460., 1200, 1800., 879., 833., 909., 795.] #J/Kg*K
 rho=[7800., 840., 2200., 7800., 25., 946., 2400., 2600., 2700., 1500.] #Kg/m^3
 
 #Calcula los Alpha para los distintos materiales
