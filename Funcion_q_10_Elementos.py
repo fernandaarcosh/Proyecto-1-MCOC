@@ -59,7 +59,7 @@ for j in range(len(Alpha)):
         if k % 50 == 0:    #Grafica cada 50 segundos
             plot(x,u_k)
     
-        title('Mateial: {} ; t = {} s'.format(Materiales[j], k*dt))
+        title('Material: {} ; t = {} s'.format(Materiales[j], k*dt))
         xlabel('Largo barra (m)')
         ylabel('Temperatura (C)')
     print 'Alpha de {} = {}'.format(Materiales[j], Alpha[j])
