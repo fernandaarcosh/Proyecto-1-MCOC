@@ -8,3 +8,6 @@ PAra etso se utiliza una ecuación diferencial en derivadas parciales conocida c
 # [Entrega 3]- Simulación caso 1-D (10 casos)
 Para la realización de esta entrega, se ejecuto un programa en Phython, el cual entrega de manera gráfica el vector u verus el tiempo, este vector corresponde a la temperatura en el tiempo.
 Se consideraron 10 diferentes materiales, a los cuales se les aplico la siguiente ecuación:
+```
+
+```
