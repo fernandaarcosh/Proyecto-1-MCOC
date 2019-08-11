@@ -1,8 +1,9 @@
 from matplotlib.pylab import *
 
 L=1.       #Largo dominio
-n=100     #n° intervalos
+n=100      #n° intervalos
 dx= L / n
+dt=1.      #s
 #print dx
 #vector x
 x=linspace(0, L, n+1)
@@ -20,16 +21,9 @@ def q_value(x,i):
     
 u0 = fun_u0(x)
 
-#U en el tiempo K
-u_k = u0.copy()
-
 #Condiciones de borde
 u_k[0] = 0
 u_k[n] = 20
-
-#T° en tiempo k+1  t = dt*[k+1]
-u_km1=u_k.copy()
-dt=1.      #s
 
 #Materiales a utilizar y sus respectivos valores
 Materiales=["Hierro", "Madera", "Hormigon", "Acero dulce", "Poliestireno Expandido", "Pastico (Polipropile)", "Marmol", "Vidrio", "Aluminio", "Arena"]
@@ -46,6 +40,10 @@ plot(x,u0, "k--")
 #Loop en el tiempo para los distintos materiales
 k = 0
 for j in range(len(Alpha)):
+    #U en el tiempo K
+    u_k = u0.copy()
+    #T° en tiempo k+1  t = dt*[k+1]
+    u_km1=u_k.copy()
     for k in range(1000):
         t=dt*k
         #print "k=", k, "t=", t
