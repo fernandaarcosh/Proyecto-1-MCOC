@@ -17,7 +17,7 @@ def q_value(x,i):
     if (x[i]<L/3) or (x[i]>2*L/3):
         return 0
     else:
-        return t/x[i]
+        return (x[i]*t)/10000
     
 u0 = fun_u0(x)
 
