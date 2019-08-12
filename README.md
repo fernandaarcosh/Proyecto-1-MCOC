@@ -17,11 +17,11 @@ def q_value(x,i):
     if (x[i]<L/3) or (x[i]>2*L/3):
         return 0
     else:
-        return t/x[i]
+        return (t/3600)*x[i]
 ```
 Y alpha se determino como:
 ```
 Alpha[i]=K[i]*dt/(c[i]*rho[i]*dx**2)
 ```
-En donde K,c y rho son parámetros dependientes de cada material.
+En donde K, c y rho son parámetros dependientes de cada material.
 El programa realiza un ciclo for en donde se va evaluando el cambio de la temeperatura de cada material por difusion a traves de cierto perido de tiempo k.
