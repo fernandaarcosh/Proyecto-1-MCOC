@@ -21,10 +21,6 @@ def q_value(x,i):
     
 u0 = fun_u0(x)
 
-#Condiciones de borde
-u_k[0] = 0
-u_k[n] = 20
-
 #Materiales a utilizar y sus respectivos valores
 Materiales=["Hierro", "Madera", "Hormigon", "Acero dulce", "Poliestireno Expandido", "Pastico (Polipropile)", "Marmol", "Vidrio", "Aluminio", "Arena"]
 K=[79.5, 0.13, 1.4, 49., 0.0373, 0.157, 2.09, 0.81, 209., 0.33] # W/(m*K)
