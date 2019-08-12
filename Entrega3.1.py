@@ -1,9 +1,8 @@
 from matplotlib.pylab import *
 
 L=1.       #Largo dominio
-n=100      #n° intervalos
+n=100     #n° intervalos
 dx= L / n
-dt=1.      #s
 #print dx
 #vector x
 x=linspace(0, L, n+1)
@@ -17,14 +16,18 @@ def q_value(x,i):
     if (x[i]<L/3) or (x[i]>2*L/3):
         return 0
     else:
-        return (x[i]*t)/10000
-    
+        return (t/3600)*x[i]        #Se divide el tiempo en 3600 para pasar de segundos a horas el valor que se entrega
 u0 = fun_u0(x)
 
+#U en el tiempo K
+
+#T° en tiempo k+1  t = dt*[k+1]
+dt=1.      #s
+
 #Materiales a utilizar y sus respectivos valores
-Materiales=["Hierro", "Madera", "Hormigon", "Acero dulce", "Poliestireno Expandido", "Pastico (Polipropile)", "Marmol", "Vidrio", "Aluminio", "Arena"]
-K=[79.5, 0.13, 1.4, 49., 0.0373, 0.157, 2.09, 0.81, 209., 0.33] # W/(m*K)
-c=[450., 1381., 837., 460., 1200, 1800., 879., 833., 909., 795.] #J/(Kg*K)
+Materiales=["Hierro", "Madera", "Hormigon", "Acero dulce", "Poliestireno Expandido", "Plastico (Polipropile)", "Marmol", "Vidrio", "Aluminio", "Arena"]
+K=[79.5, 0.13, 1.4, 49., 0.0373, 0.157, 2.09, 0.81, 209., 0.33] #W/(m*K)
+c=[450., 1381., 837., 460., 1200, 1800., 879., 833., 909., 795.] #J/Kg*K
 rho=[7800., 840., 2200., 7800., 25., 946., 2400., 2600., 2700., 1500.] #Kg/m^3
 
 #Calcula los Alpha para los distintos materiales
@@ -34,12 +37,11 @@ for i in range(len(Alpha)):
 
 plot(x,u0, "k--")
 #Loop en el tiempo para los distintos materiales
-k = 0
 for j in range(len(Alpha)):
-    #U en el tiempo K
     u_k = u0.copy()
-    #T° en tiempo k+1  t = dt*[k+1]
     u_km1=u_k.copy()
+    #Loop en el tiempo
+    k = 0
     for k in range(1000):
         t=dt*k
         #print "k=", k, "t=", t
@@ -52,6 +54,7 @@ for j in range(len(Alpha)):
         u_k = u_km1   
         if k % 50 == 0:    #Grafica cada 50 segundos
             plot(x,u_k)
+            axis([0, 1, 0, 100])
     
         title('Material: {} ; t = {} s'.format(Materiales[j], k*dt))
         xlabel('Largo barra (m)')
