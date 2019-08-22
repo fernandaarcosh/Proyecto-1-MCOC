@@ -16,13 +16,9 @@ dz = C / Nz
  
 h = dx    # = dy = dz 
 
-xM = round((Nx/2)/10.)*10
-if dx != dy:
-    print("ERRROR!!!!! dx != dy")
-    exit(-1)   #-1 le dice al SO que el programa fallo.....
-elif dx ! = dz or dy ! = dz:
-    print ("ERRROR!!!!! dx != dy")
-    exit(-1)   # Se extiende para los demas ejes de coordenadas, planos
+if dx ! = dz or dy ! = dz or dx != dz:
+    print ("ERRROR!!!!! dx != dy, dy != dz, dx != dz")
+    exit(-1)   #-1 le dice al SO que el programa fallo..... Se extiende para los demas ejes de coordenadas, planos
  
 #Funcion de conveniencia para calcular coordenadas del punto (i,j,Z)
  
@@ -70,9 +66,6 @@ print "alpha = ", alpha
 k = 0
 u_k[:,:,:]=20. 
 
-def u_amb(t,T):
-  return 20. + 10*np.sin((2*np.pi/T)*t)
-
 #Loop en el tiempo 
 dnext_t = 60   #  20.00
 next_t = 0.
@@ -91,14 +84,6 @@ for k in range(int32(5.*24*60+19*60.)):
     
     #Loop en el espacio   i = 1 ... Nx-1, j = 1 ... Ny-1, Z = 1 ... Nz-1
     for i in range(1,Nx):
-        if t > next_t and i==xM:
-           figure(1)
-           imshowbien(u_k)
-           title("k = {0:4.0f}   t = {1:05.2f} s".format(k, k*dt))
-           savefig("E6_1/frame_{0:04.0f}.png".format(framenum))
-           framenum += 1
-           next_t += dnext_t
-           close(1)
         for j in range(1,Ny):
             for Z in range(1,Nz):
                 #Algoritmo de diferencias finitas 3-D para difusion
