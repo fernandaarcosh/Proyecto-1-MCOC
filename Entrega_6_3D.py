@@ -20,8 +20,11 @@ xM = round((Nx/2)/10.)*10
 if dx != dy:
     print("ERRROR!!!!! dx != dy")
     exit(-1)   #-1 le dice al SO que el programa fallo.....
+elif dx ! = dz or dy ! = dz:
+    print ("ERRROR!!!!! dx != dy")
+    exit(-1)   # Se extiende para los demas ejes de coordenadas, planos
  
-#Funcion de conveniencia para calcular coordenadas del punto (i,j)
+#Funcion de conveniencia para calcular coordenadas del punto (i,j,Z)
  
 coords = lambda i, j, Z : (dx*i, dy*j, dz*Z)
 x, y, z = coords(4,2,3) 
@@ -47,9 +50,9 @@ def imshowbien(u):
  
 #Parametros del problema (hierro)
 dt = 1.0       # s
-K = 79.5       # m^2 / s   
-c = 450.       # J / kg C
-rho = 7800.    # kg / m^3
+K = 0.002742      # kJ / m s °C, original 9.87 kJ/m h °C   
+c = 0.983       # kJ / kg °C
+rho = 2425.    # kg / m^3
 alpha = K*dt/(c*rho*dx**2)
 
 alpha_bueno = 0.0001
@@ -66,6 +69,10 @@ print "alpha = ", alpha
  
 k = 0
 u_k[:,:,:]=20. 
+
+def u_amb(t,T):
+  return 20. + 10*np.sin((2*np.pi/T)*t)
+
 #Loop en el tiempo 
 dnext_t = 60   #  20.00
 next_t = 0.
@@ -79,8 +86,8 @@ for k in range(int32(5.*24*60+19*60.)):
     u_k[:,0,:] = u_k[:,1,:]             #du/dy(x,0,,z,t)=0   Cara abajo
     u_k[:,:,0] = u_k[:,:,1]             #du/dx(x,y,0,t)=0    Caras del ancho 1
     u_k[:,:,-1] = u_k[:,:,-2]           #du/dy(x,y,,C,t)=0   Cara del ancho 2
-    u_k[-1,:,:] = 20 + 10*sin(2*pi/(24.0/(60./60./60.))*t)     #du/dy(x,0,z,t)=0  Cara lateral 2
-    u_k[:,-1,:] = 20 + 10*sin(2*pi/(24.0/(60./60./60.))*t)     #du/dy(x,0,z,t)=0  Cara de arriba
+    u_k[Nx,:,:] = 20 + 10*sin(2*pi/(24.0/(60./60./60.))*t)     #du/dy(x,0,z,t)=0  Cara lateral 2
+    u_k[:,Ny,:] = 20 + 10*sin(2*pi/(24.0/(60./60./60.))*t)     #du/dy(x,0,z,t)=0  Cara de arriba
     
     #Loop en el espacio   i = 1 ... Nx-1, j = 1 ... Ny-1, Z = 1 ... Nz-1
     for i in range(1,Nx):
