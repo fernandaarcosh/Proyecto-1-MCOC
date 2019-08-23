@@ -43,9 +43,13 @@ Finalmente, el último caso, consistio en que tres de los bordes eran aisalntes,
 ```
 
 # [Entrega 6]- Simulación caso 3-D
-Para esta última entrega, se simula la gráfica obtenida por los sensores en el experimento realizado en el Laboratorio Uandes; estos sensores fueron colocados en un bloque de hormigon de dimensiones .....
+Para esta última entrega, se simula la gráfica obtenida por los sensores en el experimento realizado en el Laboratorio Uandes; estos sensores fueron colocados a 4 cm en todas las direcciones en un bloque de hormigon de dimensiones 1 (largo) x 0.5 (alto) x 0.57(ancho) [m]
+
 Como fue investigado para la [Entrega 5] lo parametros que se utilizaron fueron:
 - K = conductividad térmica de 9.87[kJ/m h °C]
 - c =  calor específico de 0.983 [kJ/ kg °C]
 - rho = densidad de 2.425 [kg/m3]
-Y con un calor máximo, entregado por la hidratación del cemento de HT=0,597 [kJ/g].
+Y con un calor máximo, entregado por la hidratación del cemento de:  HT=0,597 [kJ/g].
+
+
+Existen dos casos experimentales, en donde un bloque de hormigón se ubicó en la cámara de curado y fue completamente aislado; mientras que otro bloque con las mismas dimensiones fue dejado a temperatura ambiente y con solamente cuatro de sus caras aisladas.
