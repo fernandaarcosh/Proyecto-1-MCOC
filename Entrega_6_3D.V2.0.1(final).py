@@ -1,6 +1,6 @@
 from matplotlib.pylab import *
 #Scipy.interpolate
- 
+# El codigo esta elaborado en python v 2.7 
 a = 0.5        #Alto del dominio y en cm.
 b = 1.         #Largo del dominio x en cm.
 C = 0.57       #Ancho del dominio z en cm.
