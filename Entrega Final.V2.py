@@ -2,9 +2,8 @@ from matplotlib.pylab import *
 from scipy import interpolate
 import numpy
 import Datos_Amb    #Se utiliza otro archivo python para optimizar la velocidad de este archivo
-
+#Es necesario primero hacer correr el codigo "Datos_Amb" antes de hacer correr este archivo
 #Por algun motivo, funciona sin problemas en python 2.7 pero no en python 3.7
-
 #Primero se definen todas las funciones a utilizar
 #Fórmula para el calculo del q(t), conociendo el grado de hidratacion
 
@@ -34,8 +33,8 @@ a = 0.5        #Alto del dominio y en m.
 b = 1.         #Largo del dominio x en m.
 C = 0.57       #Ancho del dominio z en m.
 Nx = 25        #Numero de intervalos en x
-Ny = 12.5      #Numero de intervalos en Y
-Nz = 14.25     #Numero de intervalos en Z
+Ny = 12.5        #Numero de intervalos en Y
+Nz = 14.25        #Numero de intervalos en Z
 #==============================================================================
 # Se utilizaron estos Nx, Ny y Nz para localizar facilmente la separación de 4 cm de los bordes, 
 # al mismo tiempo optimizar el tiempo de actividad del programa y mantener la igualdad de dx, dy y dz.
@@ -85,6 +84,7 @@ alpha_bueno = 0.0001
 
 #Se denominaron los puntos en base a foto entregada 
 
+Ambiente = [20]
 Punto1 = [20]         #Costado arriba 1
 Punto2 = [20]         #Costado medio 2
 Punto3 = [20]         #Costado bajo 3
@@ -100,7 +100,7 @@ u_k[:,:,:]=20
 #Contadores para distribuir el tiempo transcurrido en Dias, Hrs., Min. 
 Hora = 0
 #Loop en el tiempo 
-for k in range(1, len(ejeTiempo)):  #se usa ese rango para equiparar el largo de la lista de los valores de la temperatura ambiente entregados en el archivo excel
+for k in range(1, 1000):  #se usa ese rango para equiparar el largo de la lista de los valores de la temperatura ambiente entregados en el archivo excel
     t = dt*k              #Por como se definio el tiempo, se avanza por cada minuto en vez de cada segundo.
     if k%60 == 0 and k>0:     #Contador para especificar bien la hora y que no supere las 24 horas.
         Hora +=1
@@ -141,7 +141,7 @@ for k in range(1, len(ejeTiempo)):  #se usa ese rango para equiparar el largo de
     Punto_7 = u_k[24,11.5,1]        #punto 7
     Punto_8 = u_k[24,6.25,1]        #punto 8
     Punto_9 = u_k[24,1,1]           #punto 9
-    
+
 #==============================================================================
     #print "Punto 1: {}".format(Punto_1)
     #print "Punto 2: {}".format(Punto_2)
@@ -167,9 +167,9 @@ for k in range(1, len(ejeTiempo)):  #se usa ese rango para equiparar el largo de
     Punto7.append(Punto_7)
     Punto8.append(Punto_8)
     Punto9.append(Punto_9)   
+    Ambiente.append(Tambiente[k])
 
-t=linspace(0,12,10000)
-plot(t,tempAmb(t))
+plot(time, Ambiente, 'black')
 plot(time, Punto1, 'b')
 plot(time, Punto2, 'r')
 plot(time, Punto3, 'm')
