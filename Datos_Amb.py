@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Aug 26 11:51:20 2019
-
-@author: Administrador
-"""
 from matplotlib.pylab import *
 from scipy import interpolate
 import numpy
