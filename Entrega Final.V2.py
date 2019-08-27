@@ -2,6 +2,7 @@ from matplotlib.pylab import *
 from scipy import interpolate
 import numpy
 import Datos_Amb    #Se utiliza otro archivo python para optimizar la velocidad de este archivo
+#Actualmente el codigo demora en correr 6 min con 54 segundos
 #Es necesario primero hacer correr el codigo "Datos_Amb" antes de hacer correr este archivo
 #Por algun motivo, funciona sin problemas en python 2.7 pero no en python 3.7
 #Primero se definen todas las funciones a utilizar
