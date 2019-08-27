@@ -11,18 +11,18 @@ def Q(t):
     if t==0:
         return 0
     else:
-        Hu = 0,597 # total de calor, calculado con la composicion del cemento en (kJ/g)
-        Cc = 308800 # total de material cementicio, en boleta envida con 308,8 (kg) por lo que son 308800 (g)
+        Hu = 597.0 # total de calor, calculado con la composicion del cemento en (kJ/kg)
+        Cc = 308.8 # total de material cementicio, en boleta envida con 308,8 (kg)
         
         tau = 9.8 # Segun mezcla 7-OPC en paper (adimensional)
         b = 0.98  # Segun mezcla 7-OPC en paper (adimensional)
-        au = 601.278 # para un Hu de kJ/g y que entregue el valor de 7-OPC  
+        au = 0.601 # para un Hu de kJ/kg y que entregue el valor de 7-OPC  
         
         E = 0.027096 # Segun mezcla 7-OPC en paper (kJ/ mol)
         R = 8.314472 * (10**(-5)) # kJ/ (k * mol)
         
-        tr = 20 # Temperatura de referencia
-        tc = 27 # Temperatura del hormigón
+        tr = 20 # Temperatura de referencia en °C
+        tc = 27 # Temperatura del hormigón en °C
         
         return Hu*Cc*(tau/(t*60))**b*(b/(t*60))*au*np.exp(-(tau/(t*60))**b)*np.exp(E/R*(1/(273+tr)- 1/(273+tc)))
 
@@ -74,9 +74,9 @@ u_km1 = zeros((Nx+1,Ny+1,Nz+1), dtype=double)   #dtype es el tipo de datos (doub
 #Parametros del problema (hormigon)
 dt = 1.0        # min
 K = 9.87        # m^2 / s   
-c = 0.983       # J / kg C
+c = 0.983       # J / kg °C
 rho = 2425.0    # kg / m^3
-#Hu = 0.579      # kj / g
+#Hu = 579.0      # kJ / kg
 #alpha = K*dt/(c*rho*dx**2)
 
 alpha_bueno = 0.0001
