@@ -11,14 +11,20 @@ def Q(t):
     if t==0:
         return 0
     else:
-        tau = 9.8
-        b = 0.98
-        au = 0.7
-        E = 27.1
-        R = 8.31
-        tr = 20
-        tc = 27
-        return 38591.46031*0.597*(tau/(t*60))**b*(b/(t*60))*au*np.exp(-(tau/(t*60))**b)*np.exp(E/R*(1/(273+tr)- 1/(273+tc)))
+        Hu = 0,597 # total de calor, calculado con la composicion del cemento en (kJ/g)
+        Cc = 308800 # total de material cementicio, en boleta envida con 308,8 (kg) por lo que son 308800 (g)
+        
+        tau = 9.8 # Segun mezcla 7-OPC en paper (adimensional)
+        b = 0.98  # Segun mezcla 7-OPC en paper (adimensional)
+        au = 601.278 # para un Hu de kJ/g y que entregue el valor de 7-OPC  
+        
+        E = 0.027096 # Segun mezcla 7-OPC en paper (kJ/ mol)
+        R = 8.314472 * (10**(-5)) # kJ/ (k * mol)
+        
+        tr = 20 # Temperatura de referencia
+        tc = 27 # Temperatura del hormigón
+        
+        return Hu*Cc*(tau/(t*60))**b*(b/(t*60))*au*np.exp(-(tau/(t*60))**b)*np.exp(E/R*(1/(273+tr)- 1/(273+tc)))
 
 
 #En caso de requerir este metodo en vez de utilizar el llamado de listado con numeros decimales (probablemente no se utilizara)
@@ -70,7 +76,7 @@ dt = 1.0        # min
 K = 9.87        # m^2 / s   
 c = 0.983       # J / kg C
 rho = 2425.0    # kg / m^3
-#HT = 0.579      # kj / g
+#Hu = 0.579      # kj / g
 #alpha = K*dt/(c*rho*dx**2)
 
 alpha_bueno = 0.0001
