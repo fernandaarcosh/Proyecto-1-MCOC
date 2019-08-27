@@ -73,8 +73,8 @@ u_km1 = zeros((Nx+1,Ny+1,Nz+1), dtype=double)   #dtype es el tipo de datos (doub
 
 #Parametros del problema (hormigon)
 dt = 1.0        # min
-K = 9.87        # m^2 / s   
-c = 0.983       # J / kg °C
+K = 0.1645        # kJ /m min °C ; esta era de 9,887 [kJ/m h °C] por lo que se llevan a minutos   
+c = 0.983       # kJ / kg °C
 rho = 2425.0    # kg / m^3
 #Hu = 579.0      # kJ / kg
 #alpha = K*dt/(c*rho*dx**2)
