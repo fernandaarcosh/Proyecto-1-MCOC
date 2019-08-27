@@ -100,9 +100,9 @@ u_k[:,:,:]=20
 #Contadores para distribuir el tiempo transcurrido en Dias, Hrs., Min. 
 Hora = 0
 #Loop en el tiempo 
-for k in range(1, 1000):  #se usa ese rango para equiparar el largo de la lista de los valores de la temperatura ambiente entregados en el archivo excel
-    t = dt*k              #Por como se definio el tiempo, se avanza por cada minuto en vez de cada segundo.
-    if k%60 == 0 and k>0:     #Contador para especificar bien la hora y que no supere las 24 horas.
+for k in range(1, len(ejeTiempo)):  #se usa ese rango para equiparar el largo de la lista de los valores de la temperatura ambiente entregados en el archivo excel
+    t = dt*k                        #Por como se definio el tiempo, se avanza por cada minuto en vez de cada segundo.
+    if k%60 == 0 and k>0:           #Contador para especificar bien la hora y que no supere las 24 horas.
         Hora +=1
     if Hora == 24:
         Hora = 0
