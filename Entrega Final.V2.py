@@ -19,7 +19,7 @@ def Q(t):
         au = 0.601 # para un Hu de kJ/kg y que entregue el valor de 7-OPC  
         
         E = 0.027096 # Segun mezcla 7-OPC en paper (kJ/ mol)
-        R = 8.314472 * (10**(-5)) # kJ/ (k * mol)
+        R = 8.314472 * (10**(-3)) # kJ/ (k * mol)
         
         tr = 20 # Temperatura de referencia en °C
         tc = 27 # Temperatura del hormigón en °C
