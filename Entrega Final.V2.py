@@ -18,7 +18,7 @@ def Q(t):
         R = 8.31
         tr = 20
         tc = 27
-        return 38591.46031*0.400463*(tau/(t*60))**b*(b/(t*60))*au*np.exp(-(tau/(t*60))**b)*np.exp(E/R*(1/(273+tr)- 1/(273+tc)))
+        return 38591.46031*0.597*(tau/(t*60))**b*(b/(t*60))*au*np.exp(-(tau/(t*60))**b)*np.exp(E/R*(1/(273+tr)- 1/(273+tc)))
 
 
 #En caso de requerir este metodo en vez de utilizar el llamado de listado con numeros decimales (probablemente no se utilizara)
