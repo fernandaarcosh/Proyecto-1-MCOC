@@ -23,5 +23,5 @@ for i in datos:    #Loop para asegurar que el grafico de la temperatura ambiente
 
 tempAmb=interpolate.interp1d(array(ejeTiempo),Tambiente,kind='slinear')  #Interpolacion de los datos
 t=linspace(0,12,10000)  #Rango de los dias de datos otorgados
-plot(t,tempAmb(t))
+#plot(t,tempAmb(t))
 archivo = close('TemperaturaAmbiente.csv')
