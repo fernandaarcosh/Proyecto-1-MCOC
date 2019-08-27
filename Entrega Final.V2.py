@@ -7,24 +7,16 @@ import Datos_Amb    #Se utiliza otro archivo python para optimizar la velocidad 
 
 #Primero se definen todas las funciones a utilizar
 #Fórmula para el calculo del q(t), conociendo el grado de hidratacion
+
 def Q(t):
-    if t==0:
-        return 0
-    else:
-        Hu = 597.0 # total de calor, calculado con la composicion del cemento en (kJ/kg)
-        Cc = 308.8 # total de material cementicio, en boleta envida con 308,8 (kg)
-        
-        tau = 9.8 # Segun mezcla 7-OPC en paper (adimensional)
-        b = 0.98  # Segun mezcla 7-OPC en paper (adimensional)
-        au = 0.601 # para un Hu de kJ/kg y que entregue el valor de 7-OPC  
-        
-        E = 0.027096 # Segun mezcla 7-OPC en paper (kJ/ mol)
-        R = 8.314472 * (10**(-3)) # kJ/ (k * mol)
-        
-        tr = 20 # Temperatura de referencia en °C
-        tc = 27 # Temperatura del hormigón en °C
-        
-        return Hu*Cc*(tau/(t*60))**b*(b/(t*60))*au*np.exp(-(tau/(t*60))**b)*np.exp(E/R*(1/(273+tr)- 1/(273+tc)))
+    tau = 9.8
+    b = 0.98
+    au = 0.7
+    E = 27.1
+    R = 8.31
+    tr = 20
+    tc = 27
+    return 38591.46031*0.400463*(tau/(t*60))**b*(b/(t*60))*au*np.exp(-(tau/(t*60))**b)*np.exp(E/R*(1/(273+tr)- 1/(273+tc)))
 
 
 #En caso de requerir este metodo en vez de utilizar el llamado de listado con numeros decimales (probablemente no se utilizara)
@@ -42,8 +34,8 @@ a = 0.5        #Alto del dominio y en m.
 b = 1.         #Largo del dominio x en m.
 C = 0.57       #Ancho del dominio z en m.
 Nx = 25        #Numero de intervalos en x
-Ny = 12.5        #Numero de intervalos en Y
-Nz = 14.25        #Numero de intervalos en Z
+Ny = 12.5      #Numero de intervalos en Y
+Nz = 14.25     #Numero de intervalos en Z
 #==============================================================================
 # Se utilizaron estos Nx, Ny y Nz para localizar facilmente la separación de 4 cm de los bordes, 
 # al mismo tiempo optimizar el tiempo de actividad del programa y mantener la igualdad de dx, dy y dz.
@@ -73,10 +65,10 @@ u_km1 = zeros((Nx+1,Ny+1,Nz+1), dtype=double)   #dtype es el tipo de datos (doub
 
 #Parametros del problema (hormigon)
 dt = 1.0        # min
-K = 0.1645        # kJ /m min °C ; esta era de 9,887 [kJ/m h °C] por lo que se llevan a minutos   
-c = 0.983       # kJ / kg °C
+K = 9.87        # m^2 / s   
+c = 0.983       # J / kg C
 rho = 2425.0    # kg / m^3
-#Hu = 579.0      # kJ / kg
+#HT = 0.579      # kj / g
 #alpha = K*dt/(c*rho*dx**2)
 
 alpha_bueno = 0.0001
@@ -93,22 +85,22 @@ alpha_bueno = 0.0001
 
 #Se denominaron los puntos en base a foto entregada 
 
-Punto1 = []         #Costado arriba 1
-Punto2 = []         #Costado medio 2
-Punto3 = []         #Costado bajo 3
-Punto4 = []         #Centro arriba 4
-Punto5 = []         #Centro medio 5
-Punto6 = []         #Centro bajo 6
-Punto7 = []         #Esquina arriba 7
-Punto8 = []         #Esquina medio 8
-Punto9 = []         #Esquina bajo 9
-time=[]             #Graficar el tiempo en Dias, en vez de minutos o segundos
+Punto1 = [20]         #Costado arriba 1
+Punto2 = [20]         #Costado medio 2
+Punto3 = [20]         #Costado bajo 3
+Punto4 = [20]         #Centro arriba 4
+Punto5 = [20]         #Centro medio 5
+Punto6 = [20]         #Centro bajo 6
+Punto7 = [20]         #Esquina arriba 7
+Punto8 = [20]         #Esquina medio 8
+Punto9 = [20]         #Esquina bajo 9
+time=[0]             #Graficar el tiempo en Dias, en vez de minutos o segundos
 k = 0
 u_k[:,:,:]=20
 #Contadores para distribuir el tiempo transcurrido en Dias, Hrs., Min. 
 Hora = 0
 #Loop en el tiempo 
-for k in range(len(ejeTiempo)):  #se usa ese rango para equiparar el largo de la lista de los valores de la temperatura ambiente entregados en el archivo excel
+for k in range(1, len(ejeTiempo)):  #se usa ese rango para equiparar el largo de la lista de los valores de la temperatura ambiente entregados en el archivo excel
     t = dt*k              #Por como se definio el tiempo, se avanza por cada minuto en vez de cada segundo.
     if k%60 == 0 and k>0:     #Contador para especificar bien la hora y que no supere las 24 horas.
         Hora +=1
